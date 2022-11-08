@@ -15,7 +15,7 @@
     "@wonderlandengine/components": "^0.9.0",
     "esbuild": "^0.15.12",
     "manifold-3d": "github:playkostudios/manifold#package",
-    "manifold-wle": "github:playkostudios/manifold-wle",
+    "manifold-wle": "github:playkostudios/manifold-wle#1.0.0",
     "shx": "^0.3.4"
   }
 }
