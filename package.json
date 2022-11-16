@@ -1,6 +1,6 @@
 {
-  "name": "manifold-wle-project",
-  "version": "0.0.1",
+  "name": "manifold-wle-example",
+  "version": "0.0.2",
   "description": "",
   "main": "js/bundle.js",
   "scripts": {
@@ -10,12 +10,14 @@
     "build": "npm run build-bundle && npm run copy-worker && npm run copy-manifold"
   },
   "author": "Playko",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
+    "@wonderlandengine/api": "^0.9.0",
     "@wonderlandengine/components": "^0.9.0",
     "esbuild": "^0.15.12",
     "manifold-3d": "github:playkostudios/manifold#package",
-    "manifold-wle": "github:playkostudios/manifold-wle#1.0.0",
+    "manifold-wle": "github:playkostudios/manifold-wle#0.0.2",
+    "nurbs": "^1.1.1",
     "shx": "^0.3.4"
   }
 }

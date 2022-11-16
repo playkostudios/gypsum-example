@@ -2,3 +2,4 @@ node_modules/
 cache/
 deploy/
 imgui.ini
+package-lock.json
