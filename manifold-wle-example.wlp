@@ -560,7 +560,7 @@
     },
     "settings": {
         "project": {
-            "name": "manifold-wle",
+            "name": "manifold-wle-example",
             "version": [
                 0,
                 9,
