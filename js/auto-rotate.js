@@ -13,15 +13,24 @@ WL.registerComponent('auto-rotate', {
         const TAU = Math.PI * 2;
         this.mul = TAU / this.rotTimeMS;
         this.heightMul = TAU / this.heightRotTimeMS;
+        this.paused = false;
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                this.paused = !this.paused;
+            }
+        });
     },
     update: function(_dt) {
-        const now = Date.now();
-        const i = this.mul * ((now - this.startTime) % this.rotTimeMS);
-        const j = this.heightMul * ((now - this.startTime) % this.heightRotTimeMS);
-        this.object.setTranslationWorld([
-            this.radius * Math.sin(i),
-            this.height + Math.sin(j),
-            this.radius * Math.cos(i),
-        ]);
+        if (!this.paused) {
+            const now = Date.now();
+            const i = this.mul * ((now - this.startTime) % this.rotTimeMS);
+            const j = this.heightMul * ((now - this.startTime) % this.heightRotTimeMS);
+            this.object.setTranslationWorld([
+                this.radius * Math.sin(i),
+                this.height + Math.sin(j),
+                this.radius * Math.cos(i),
+            ]);
+        }
     },
 });

@@ -1,5 +1,5 @@
 require('@wonderlandengine/components/wasd-controls');
 require('@wonderlandengine/components/mouse-look');
 
-require('./manifold-component.js');
+require('./extrusion.js');
 require('./auto-rotate.js');
