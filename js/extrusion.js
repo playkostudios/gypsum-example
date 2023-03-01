@@ -1,10 +1,14 @@
+import { Component, Type } from '@wonderlandengine/api';
 import { CSGPool, makeCirclePolyline, makeRotationMinimizingFrames, ExtrusionMesh, fixTangentList, extendCurveFrames } from 'gypsum-mesh';
 import nurbs from 'nurbs';
 
-WL.registerComponent('extrusion', {
-    insideMaterial: {type: WL.Type.Material},
-    candyCaneMaterial: {type: WL.Type.Material},
-}, {
+export class Extrusion extends Component {
+    static TypeName = 'extrusion';
+    static Properties = {
+        insideMaterial: {type: Type.Material},
+        candyCaneMaterial: {type: Type.Material},
+    };
+
     getSpiralFrames() {
         const helixHeight = 8;
         const helixSpacing = 1;
@@ -30,15 +34,17 @@ WL.registerComponent('extrusion', {
         fixTangentList(tangents);
         const curve = makeRotationMinimizingFrames(positions, tangents, [0, 1, 0], { endNormal: [0, 1, 0] });
         return [curve, positions];
-    },
+    }
+
     getSpiralExtrusion(curve, positions, radius, extraOptions) {
         const polyline = makeCirclePolyline(radius, false, 10);
 
-        return new ExtrusionMesh(polyline, positions, curve, {
+        return new ExtrusionMesh(this.engine, polyline, positions, curve, {
             smoothNormals: true,
             ...(extraOptions ?? {}),
         });
-    },
+    }
+
     async init() {
         // create a CSG pool with a single worker
         const pool = new CSGPool(1);
@@ -75,5 +81,5 @@ WL.registerComponent('extrusion', {
             material: material ?? this.fallbackMaterial
           });
         }
-    },
-});
+    }
+}
