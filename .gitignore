@@ -3,3 +3,5 @@ cache/
 deploy/
 imgui.ini
 package-lock.json
+.editor/
+pnpm-lock.yaml
