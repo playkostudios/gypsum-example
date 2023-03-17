@@ -9,6 +9,12 @@
     "build-bundle": "esbuild ./js/bundle.js --minify --sourcemap --bundle --platform=browser --outfile=\"deploy/gypsum-example-bundle.js\"",
     "build": "npm run build-bundle && npm run copy-worker && npm run copy-manifold"
   },
+  "files": [
+    "assets",
+    "js",
+    "demo.png",
+    "gypsum-example.wlp"
+  ],
   "author": "Playko",
   "license": "MIT",
   "private": true,
