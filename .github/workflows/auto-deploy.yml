@@ -23,7 +23,7 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       # XXX wonderland engine uses npm to run scripts instead of pnpm, but this isn't an issue... for now. it might be an issue in WLE 1.0.0
-      - run: /usr/local/bin/entrypoint.sh WonderlandEditor --windowless --package --project example-project/example-project.wlp --credentials "$WLE_CREDENTIALS"
+      - run: /usr/local/bin/entrypoint.sh WonderlandEditor --windowless --package --project gypsum-example.wlp --credentials "$WLE_CREDENTIALS"
         env:
           WLE_CREDENTIALS: ${{ secrets.WLE_CREDENTIALS }}
       - uses: actions/upload-pages-artifact@v1
