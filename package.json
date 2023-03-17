@@ -1,6 +1,6 @@
 {
-  "name": "manifold-wle-example",
-  "version": "0.0.2",
+  "name": "gypsum-example",
+  "version": "0.2.0",
   "description": "Example project for the Gypsum library",
   "main": "js/bundle.js",
   "scripts": {
