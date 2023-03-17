@@ -3,6 +3,10 @@ import { makeCirclePolyline, makeRotationMinimizingFrames, ExtrusionMesh, fixTan
 import nurbs from 'nurbs';
 import { getSharedCSGPool } from './csg-shared-pool';
 
+// a more complicated example. shows how to procedurally generate extrusion
+// meshes, how to use mesh hinting and how to apply multiple materials to
+// procedural meshes
+
 export class Extrusion extends Component {
     static TypeName = 'extrusion';
     static Properties = {
@@ -84,10 +88,10 @@ export class Extrusion extends Component {
 
         // add each submesh to the scene
         for (const [mesh, material] of csgResult.getSubmeshes()) {
-          this.object.addComponent('mesh', {
-            mesh,
-            material: material ?? this.fallbackMaterial
-          });
+            this.object.addComponent('mesh', {
+                mesh,
+                material: material ?? this.fallbackMaterial
+            });
         }
     }
 }

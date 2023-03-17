@@ -163,9 +163,9 @@
                 }
             ],
             "translation": [
-                0.0,
-                0.0,
-                0.0
+                3.0,
+                -1.0,
+                -3.0
             ],
             "rotation": [
                 0.0,
@@ -321,6 +321,61 @@
                 1.0,
                 1.0
             ]
+        },
+        "102": {
+            "name": "ManualMemoryManagement",
+            "components": [
+                {
+                    "type": "manual-memory-management",
+                    "manual-memory-management": {
+                        "material": "25"
+                    }
+                }
+            ],
+            "translation": [
+                -3.0,
+                0.0,
+                3.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "103": {
+            "name": "SuzanneCoin",
+            "translation": [
+                3.0,
+                0.0,
+                3.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "components": [
+                {
+                    "type": "suzanne-coin",
+                    "suzanne-coin": {
+                        "suzanne": "104",
+                        "material": "106"
+                    }
+                }
+            ]
         }
     },
     "meshes": {
@@ -358,6 +413,12 @@
             "link": {
                 "name": "PrimitiveCircle",
                 "file": "default"
+            }
+        },
+        "104": {
+            "link": {
+                "name": "Suzanne",
+                "file": "assets\\suzanne-manifold.glb"
             }
         }
     },
@@ -527,6 +588,22 @@
                     0.0,
                     0.0,
                     1.0,
+                    1.0
+                ]
+            }
+        },
+        "106": {
+            "name": "Gold",
+            "Phong": {
+                "shininess": 2
+            },
+            "pipeline": "47",
+            "Physical": {
+                "roughnessFactor": 0.5,
+                "albedoColor": [
+                    0.9921568,
+                    0.8404152,
+                    0.0,
                     1.0
                 ]
             }
@@ -785,7 +862,8 @@
         }
     },
     "files": [
-        "assets/candy-cane.png"
+        "assets/candy-cane.png",
+        "assets/suzanne-manifold.glb"
     ],
     "fonts": {
         "98": {

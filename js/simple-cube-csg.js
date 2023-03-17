@@ -2,6 +2,8 @@ import { Component, Type } from '@wonderlandengine/api';
 import { CubeMesh } from 'gypsum-mesh';
 import { getSharedCSGPool } from './csg-shared-pool';
 
+// a simple example on how to do CSG: subtracts 2 cubes
+
 export class SimpleCubeCSG extends Component {
     static TypeName = 'simple-cube-csg';
     static Properties = {
@@ -25,10 +27,10 @@ export class SimpleCubeCSG extends Component {
 
         // add each submesh to the scene
         for (const [mesh, material] of csgResult.getSubmeshes()) {
-          this.object.addComponent('mesh', {
-            mesh,
-            material: material ?? this.fallbackMaterial
-          });
+            this.object.addComponent('mesh', {
+                mesh,
+                material: material ?? this.fallbackMaterial
+            });
         }
     }
 }
