@@ -21,7 +21,7 @@
                 0.0,
                 0.9262865
             ],
-            "scale": [
+            "scaling": [
                 0.9999998,
                 1.0,
                 0.9999998
@@ -49,7 +49,7 @@
                 0.0,
                 0.7069639
             ],
-            "scale": [
+            "scaling": [
                 4.0,
                 4.0,
                 4.0
@@ -134,7 +134,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 0.1,
                 0.1,
                 0.1
@@ -173,7 +173,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 1.0,
                 1.0,
                 1.0
@@ -201,7 +201,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 0.001,
                 0.001,
                 0.001
@@ -229,7 +229,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 0.05,
                 0.05,
                 0.05
@@ -258,7 +258,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 0.05,
                 0.05,
                 0.05
@@ -287,7 +287,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 0.05,
                 0.05,
                 0.05
@@ -316,7 +316,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 1.0,
                 1.0,
                 1.0
@@ -343,7 +343,7 @@
                 0.0,
                 1.0
             ],
-            "scale": [
+            "scaling": [
                 1.0,
                 1.0,
                 1.0
@@ -362,11 +362,6 @@
                 0.0,
                 1.0
             ],
-            "scale": [
-                1.0,
-                1.0,
-                1.0
-            ],
             "components": [
                 {
                     "type": "suzanne-coin",
@@ -375,6 +370,11 @@
                         "material": "106"
                     }
                 }
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
             ]
         }
     },
@@ -705,9 +705,9 @@
         "project": {
             "name": "gypsum-example",
             "version": [
+                1,
                 0,
-                9,
-                5
+                0
             ]
         },
         "vr": {
@@ -716,10 +716,12 @@
         },
         "scripting": {
             "sourcePaths": [
-                "/js/editor-components-bundle.js",
                 "js/"
             ],
-            "useInternalBundler": false
+            "libraryPaths": [
+                "/js/lib/"
+            ],
+            "bundlingType": "none"
         },
         "runtime": {
             "visualizeOverdraw": false
@@ -872,5 +874,6 @@
                 "file": "default"
             }
         }
-    }
+    },
+    "languages": {}
 }
