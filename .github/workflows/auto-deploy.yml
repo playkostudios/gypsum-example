@@ -17,6 +17,7 @@ jobs:
           node-version: 18
           cache: 'npm'
       - run: npm ci
+      - run: mkdir deploy
       - run: npm run copy-worker
       - run: npm run copy-manifold
       - run: /usr/local/bin/entrypoint.sh WonderlandEditor --windowless --package --project gypsum-example.wlp --credentials "$WLE_CREDENTIALS"
