@@ -1,4 +1,4 @@
-import { Component, MeshAttribute, Type } from '@wonderlandengine/api';
+import { Component, MeshAttribute, Property } from '@wonderlandengine/api';
 import { makeCirclePolyline, makeRotationMinimizingFrames, ExtrusionMesh, fixTangentList, extendCurveFrames } from 'gypsum-mesh';
 import nurbs from 'nurbs';
 import { getSharedCSGPool } from './csg-shared-pool';
@@ -7,12 +7,12 @@ import { getSharedCSGPool } from './csg-shared-pool';
 // meshes, how to use mesh hinting and how to apply multiple materials to
 // procedural meshes
 
-export class Extrusion extends Component {
+export class ExtrusionComponent extends Component {
     static TypeName = 'extrusion';
     static Properties = {
-        insideMaterial: {type: Type.Material},
-        candyCaneMaterial: {type: Type.Material},
-        fallbackMaterial: {type: Type.Material},
+        insideMaterial: Property.material(),
+        candyCaneMaterial: Property.material(),
+        fallbackMaterial: Property.material(),
     };
 
     getSpiralFrames(helixHeight = 8, helixSpacing = 1, subDivs = 128) {
@@ -42,7 +42,7 @@ export class Extrusion extends Component {
     getSpiralExtrusion(curve, positions, radius, extraOptions) {
         const polyline = makeCirclePolyline(radius, false, 10);
 
-        return new ExtrusionMesh(WL, polyline, positions, curve, {
+        return new ExtrusionMesh(this.engine, polyline, positions, curve, {
             smoothNormals: true,
             ...(extraOptions ?? {}),
         });
@@ -76,7 +76,7 @@ export class Extrusion extends Component {
 
         // subtract the thinner spiral from the thicker spiral
         const csgPool = getSharedCSGPool();
-        const csgResult = await csgPool.dispatch(WL, {
+        const csgResult = await csgPool.dispatch(this.engine, {
             operation: 'rotate',
             degrees: [45, 45, 45],
             manifold: {
@@ -95,5 +95,3 @@ export class Extrusion extends Component {
         }
     }
 }
-
-WL.registerComponent(Extrusion);

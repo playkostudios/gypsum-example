@@ -1,4 +1,4 @@
-import { Component, Type } from '@wonderlandengine/api';
+import { Component, Property } from '@wonderlandengine/api';
 import { CylinderMesh, MeshGroup } from 'gypsum-mesh';
 import { getSharedCSGPool } from './csg-shared-pool';
 
@@ -6,11 +6,11 @@ import { getSharedCSGPool } from './csg-shared-pool';
 // suzanne model by squishing it, adding it to a short cylinder and trimming the
 // ears
 
-export class SuzanneCoin extends Component {
+export class SuzanneCoinComponent extends Component {
     static TypeName = 'suzanne-coin';
     static Properties = {
-        material: {type: Type.Material},
-        suzanne: {type: Type.Mesh},
+        material: Property.material(),
+        suzanne: Property.mesh(),
     };
 
     async start() {
@@ -20,7 +20,7 @@ export class SuzanneCoin extends Component {
         // add squished suzanne to rotated short cylinder to make coin. trim the
         // ears out of the coin by doing an intersection with a similar cylinder
         const csgPool = getSharedCSGPool();
-        const csgResult = await csgPool.dispatch(WL, {
+        const csgResult = await csgPool.dispatch(this.engine, {
             operation: 'rotate',
             degrees: [0, -135, 0],
             manifold: {
@@ -33,7 +33,7 @@ export class SuzanneCoin extends Component {
                         manifold: {
                             operation: 'rotate',
                             degrees: [90, 0, 0],
-                            manifold: new CylinderMesh(WL, { radius: 1.1, height: 0.2 }).mark(),
+                            manifold: new CylinderMesh(this.engine, { radius: 1.1, height: 0.2 }).mark(),
                         },
                     },
                     right: {
@@ -48,7 +48,7 @@ export class SuzanneCoin extends Component {
                     manifold: {
                         operation: 'rotate',
                         degrees: [90, 0, 0],
-                        manifold: new CylinderMesh(WL, { radius: 1.1, height: 0.5 }).mark(),
+                        manifold: new CylinderMesh(this.engine, { radius: 1.1, height: 0.5 }).mark(),
                     },
                 }
             },
@@ -60,5 +60,3 @@ export class SuzanneCoin extends Component {
         }
     }
 }
-
-WL.registerComponent(SuzanneCoin);

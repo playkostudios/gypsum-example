@@ -12,43 +12,78 @@
  */
 
 import {loadRuntime} from '@wonderlandengine/api';
-import * as API from '@wonderlandengine/api'; // Deprecated: Backward compatibility.
 
 /* wle:auto-imports:start */
+import {MouseLookComponent} from '@wonderlandengine/components';
+import {WasdControlsComponent} from '@wonderlandengine/components';
+import {AutoRotateComponent} from './auto-rotate.js';
+import {ExtrusionComponent} from './extrusion.js';
+import {ManualMemoryManagementComponent} from './manual-memory-management.js';
+import {SimpleCubeCSGComponent} from './simple-cube-csg.js';
+import {SuzanneCoinComponent} from './suzanne-coin.js';
 /* wle:auto-imports:end */
 
 /* wle:auto-constants:start */
-const ProjectName = 'MyWonderland';
-const RuntimeBaseName = 'WonderlandRuntime';
-const WithPhysX = false;
-const WithLoader = false;
+const RuntimeOptions = {
+    physx: false,
+    loader: false,
+    xrFramebufferScaleFactor: 1,
+    canvas: 'canvas',
+};
+const Constants = {
+    ProjectName: 'gypsum-example',
+    RuntimeBaseName: 'WonderlandRuntime',
+    WebXRRequiredFeatures: ['local',],
+    WebXROptionalFeatures: ['local','hand-tracking','hit-test',],
+};
 /* wle:auto-constants:end */
 
-const engine = await loadRuntime(RuntimeBaseName, {
-  physx: WithPhysX,
-  loader: WithLoader
-});
-Object.assign(engine, API); // Deprecated: Backward compatibility.
-window.WL = engine; // Deprecated: Backward compatibility.
+const engine = await loadRuntime(Constants.RuntimeBaseName, RuntimeOptions);
 
-engine.onSceneLoaded.push(() => {
+engine.onSceneLoaded.once(() => {
     const el = document.getElementById('version');
     if(el) setTimeout(() => el.remove(), 2000);
 });
 
-const arButton = document.getElementById('ar-button');
-if(arButton) {
-    arButton.dataset.supported = engine.arSupported;
+/* WebXR setup. */
+
+function requestSession(mode) {
+    engine
+        .requestXRSession(mode, Constants.WebXRRequiredFeatures, Constants.WebXROptionalFeatures)
+        .catch((e) => console.error(e));
 }
-const vrButton = document.getElementById('vr-button');
-if(vrButton) {
-    vrButton.dataset.supported = engine.vrSupported;
+
+function setupButtonsXR() {
+    /* Setup AR / VR buttons */
+    const arButton = document.getElementById('ar-button');
+    if (arButton) {
+        arButton.dataset.supported = engine.arSupported;
+        arButton.addEventListener('click', () => requestSession('immersive-ar'));
+    }
+    const vrButton = document.getElementById('vr-button');
+    if (vrButton) {
+        vrButton.dataset.supported = engine.vrSupported;
+        vrButton.addEventListener('click', () => requestSession('immersive-vr'));
+    }
+}
+
+if (document.readyState === 'loading') {
+    window.addEventListener('load', setupButtonsXR);
+} else {
+    setupButtonsXR();
 }
 
 /* wle:auto-register:start */
+engine.registerComponent(MouseLookComponent);
+engine.registerComponent(WasdControlsComponent);
+engine.registerComponent(AutoRotateComponent);
+engine.registerComponent(ExtrusionComponent);
+engine.registerComponent(ManualMemoryManagementComponent);
+engine.registerComponent(SimpleCubeCSGComponent);
+engine.registerComponent(SuzanneCoinComponent);
 /* wle:auto-register:end */
 
-engine.scene.load(`${ProjectName}.bin`);
+engine.scene.load(`${Constants.ProjectName}.bin`);
 
 /* wle:auto-benchmark:start */
 /* wle:auto-benchmark:end */

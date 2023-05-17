@@ -1,14 +1,14 @@
 {
   "name": "gypsum-example",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Example project for the Gypsum library",
   "main": "js/bundle.js",
   "scripts": {
     "copy-worker": "shx cp node_modules/gypsum-mesh/dist/gypsum-manifold.worker.* deploy/",
     "copy-manifold": "shx cp node_modules/manifold-3d/manifold.js deploy/ && shx cp node_modules/manifold-3d/manifold.wasm deploy/",
-    "build-bundle": "esbuild ./js/bundle.js --minify --sourcemap --bundle --platform=browser --outfile=\"deploy/gypsum-example-bundle.js\"",
+    "build-bundle": "esbuild ./js/index.js --minify --sourcemap --bundle --format=esm --define:WL_EDITOR=false --outfile=\"deploy/gypsum-example-bundle.js\"",
     "build": "npm run build-bundle && npm run copy-worker && npm run copy-manifold",
-    "dev": "npm run copy-worker && npm run copy-manifold && shx rm deploy/gypsum-example-bundle.js.map && esbuild ./js/bundle.js --watch --bundle --platform=browser --outfile=\"deploy/gypsum-example-bundle.js\""
+    "dev": "npm run copy-worker && npm run copy-manifold && shx rm -f deploy/gypsum-example-bundle.js.map && esbuild ./js/bundle.js --watch --bundle --platform=browser --outfile=\"deploy/gypsum-example-bundle.js\""
   },
   "files": [
     "assets",
@@ -20,12 +20,12 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@wonderlandengine/components": "1.0.0-rc.3"
+    "@wonderlandengine/components": "^1.0.3"
   },
   "devDependencies": {
-    "@wonderlandengine/api": "1.0.0-rc.3",
-    "esbuild": "^0.17.10",
-    "gypsum-mesh": "^0.2.0",
+    "@wonderlandengine/api": "^1.0.0",
+    "esbuild": "^0.17.19",
+    "gypsum-mesh": "^0.3.0",
     "manifold-3d": "^2.1.0",
     "nurbs": "^1.1.1",
     "shx": "^0.3.4"

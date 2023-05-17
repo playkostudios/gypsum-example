@@ -1,4 +1,4 @@
-import { Component, Type } from '@wonderlandengine/api';
+import { Component, Property } from '@wonderlandengine/api';
 import { CubeMesh } from 'gypsum-mesh';
 import { getSharedCSGPool } from './csg-shared-pool';
 
@@ -6,19 +6,19 @@ import { getSharedCSGPool } from './csg-shared-pool';
 // show how manual memory management (.dispose() instead of .mark()) works in
 // gypsum
 
-export class ManualMemoryManagement extends Component {
+export class ManualMemoryManagementComponent extends Component {
     static TypeName = 'manual-memory-management';
     static Properties = {
-        material: {type: Type.Material},
+        material: Property.material(),
     };
 
     async start() {
         // make cube meshgroup
-        const cube = new CubeMesh(WL, 2);
+        const cube = new CubeMesh(this.engine, 2);
 
         // subtract the base cube from the offset subtraction cube
         const csgPool = getSharedCSGPool();
-        const csgResult = await csgPool.dispatch(WL, {
+        const csgResult = await csgPool.dispatch(this.engine, {
             operation: 'subtract',
             left: cube,
             right: {
@@ -37,5 +37,3 @@ export class ManualMemoryManagement extends Component {
         }
     }
 }
-
-WL.registerComponent(ManualMemoryManagement);

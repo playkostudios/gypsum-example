@@ -1,10 +1,15 @@
-WL.registerComponent('auto-rotate', {
-    rotationTime: {type: WL.Type.Float, default: 1.0},
-    heightVariance: {type: WL.Type.Float, default: 1.0},
-    heightVarianceTime: {type: WL.Type.Float, default: 1.0},
-}, {
-    init: function() {
-        const startPos = this.object.getTranslationWorld([0, 0, 0]);
+import { Component, Property } from '@wonderlandengine/api';
+
+export class AutoRotateComponent extends Component {
+    static TypeName = 'auto-rotate';
+    static Properties = {
+        rotationTime: Property.float(1.0),
+        heightVariance: Property.float(1.0),
+        heightVarianceTime: Property.float(1.0),
+    };
+
+    init() {
+        const startPos = this.object.getPositionWorld([0, 0, 0]);
         this.radius = Math.sqrt(startPos[0] * startPos[0] + startPos[2] * startPos[2]);
         this.height = startPos[1];
         this.startTime = Date.now();
@@ -20,17 +25,18 @@ WL.registerComponent('auto-rotate', {
                 this.paused = !this.paused;
             }
         });
-    },
-    update: function(_dt) {
+    }
+
+    update(_dt) {
         if (!this.paused) {
             const now = Date.now();
             const i = this.mul * ((now - this.startTime) % this.rotTimeMS);
             const j = this.heightMul * ((now - this.startTime) % this.heightRotTimeMS);
-            this.object.setTranslationWorld([
+            this.object.setPositionWorld([
                 this.radius * Math.sin(i),
                 this.height + Math.sin(j),
                 this.radius * Math.cos(i),
             ]);
         }
-    },
-});
+    }
+}

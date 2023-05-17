@@ -104,7 +104,8 @@
                     "type": "light",
                     "light": {
                         "attenuation": 0.1,
-                        "range": 10.0
+                        "range": 10.0,
+                        "intensity": 4.0
                     }
                 },
                 {
@@ -707,7 +708,7 @@
             "version": [
                 1,
                 0,
-                0
+                1
             ]
         },
         "vr": {
@@ -721,7 +722,7 @@
             "libraryPaths": [
                 "/js/lib/"
             ],
-            "bundlingType": "none"
+            "bundlingType": "esbuild"
         },
         "runtime": {
             "visualizeOverdraw": false
