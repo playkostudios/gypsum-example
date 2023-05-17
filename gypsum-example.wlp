@@ -104,8 +104,8 @@
                     "type": "light",
                     "light": {
                         "attenuation": 0.1,
-                        "range": 10.0,
-                        "intensity": 4.0
+                        "intensity": 1.0,
+                        "shadowRange": 10.0
                     }
                 },
                 {
@@ -443,7 +443,25 @@
                     9.999999974752427e-7,
                     1.0
                 ],
-                "shininess": 1
+                "shininess": 1,
+                "emissiveColor": [
+                    0.2,
+                    0.2,
+                    0.2,
+                    1.0
+                ],
+                "ambientColor": [
+                    0.05,
+                    0.05,
+                    0.05,
+                    1.0
+                ],
+                "diffuseColor": [
+                    0.5,
+                    0.5,
+                    0.5,
+                    1.0
+                ]
             }
         },
         "22": {
@@ -463,9 +481,15 @@
                 ],
                 "shininess": 10,
                 "ambientColor": [
+                    0.05,
+                    0.05,
+                    0.05,
+                    1.0
+                ],
+                "emissiveColor": [
                     0.317647,
                     0.0,
-                    0.2165777,
+                    0.2165776,
                     1.0
                 ]
             }
@@ -486,6 +510,12 @@
                     1.0
                 ],
                 "ambientColor": [
+                    0.05,
+                    0.05,
+                    0.05,
+                    1.0
+                ],
+                "emissiveColor": [
                     0.3843137,
                     0.3089579,
                     0.0,
@@ -509,9 +539,15 @@
                     1.0
                 ],
                 "ambientColor": [
+                    0.05,
+                    0.05,
+                    0.05,
+                    1.0
+                ],
+                "emissiveColor": [
                     0.0,
                     0.2352941,
-                    0.1437908,
+                    0.1437907,
                     1.0
                 ]
             }
@@ -520,7 +556,25 @@
             "name": "CandyCaneMaterial",
             "pipeline": "38",
             "Phong": {
-                "diffuseTexture": "79"
+                "diffuseTexture": "79",
+                "emissiveColor": [
+                    0.2,
+                    0.2,
+                    0.2,
+                    1.0
+                ],
+                "ambientColor": [
+                    0.05,
+                    0.05,
+                    0.05,
+                    1.0
+                ],
+                "diffuseColor": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                ]
             }
         },
         "77": {
@@ -540,9 +594,9 @@
                 ],
                 "shininess": 1,
                 "ambientColor": [
-                    0.3803921,
-                    0.2849211,
-                    0.2849211,
+                    0.05,
+                    0.05,
+                    0.05,
                     1.0
                 ],
                 "fogColor": [
@@ -550,6 +604,12 @@
                     0.9254902,
                     0.9254902,
                     0.0
+                ],
+                "emissiveColor": [
+                    0.3803921,
+                    0.2849211,
+                    0.2849211,
+                    1.0
                 ]
             }
         },
@@ -764,6 +824,10 @@
             "link": {
                 "name": "Phong Opaque",
                 "file": "default"
+            },
+            "features": {
+                "DEPRECATED_LIGHT_ATTENUATION": true,
+                "WITH_EMISSIVE": true
             }
         },
         "38": {
@@ -772,13 +836,17 @@
                 "file": "default"
             },
             "features": {
-                "ALPHA_MASKED": true
+                "ALPHA_MASKED": true,
+                "DEPRECATED_LIGHT_ATTENUATION": true
             }
         },
         "40": {
             "link": {
                 "name": "Foliage",
                 "file": "default"
+            },
+            "features": {
+                "DEPRECATED_LIGHT_ATTENUATION": true
             }
         },
         "41": {
@@ -827,19 +895,26 @@
             },
             "name": "Phong Opaque Coloured",
             "features": {
-                "VERTEX_COLORS": true
+                "VERTEX_COLORS": true,
+                "DEPRECATED_LIGHT_ATTENUATION": true
             }
         },
         "99": {
             "link": {
                 "name": "Phong Normalmapped",
                 "file": "default"
+            },
+            "features": {
+                "DEPRECATED_LIGHT_ATTENUATION": true
             }
         },
         "100": {
             "link": {
                 "name": "Phong Lightmapped",
                 "file": "default"
+            },
+            "features": {
+                "DEPRECATED_LIGHT_ATTENUATION": true
             }
         }
     },
@@ -861,7 +936,7 @@
                 512,
                 512
             ],
-            "compress": true
+            "compression": "etc1s"
         }
     },
     "files": [
