@@ -11,18 +11,12 @@ jobs:
     container:
       image: wonderlandengine/editor:latest
     steps:
-      # XXX libatomic is missing. looks like WLE github CI is outdated
-      - run: apt-get install -y libatomic1
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      # XXX wonderland engine uses npm to run scripts instead of pnpm, but this isn't an issue... for now. it might be an issue in WLE 1.0.0
+          cache: 'npm'
+      - run: npm ci
       - run: /usr/local/bin/entrypoint.sh WonderlandEditor --windowless --package --project gypsum-example.wlp --credentials "$WLE_CREDENTIALS"
         env:
           WLE_CREDENTIALS: ${{ secrets.WLE_CREDENTIALS }}
